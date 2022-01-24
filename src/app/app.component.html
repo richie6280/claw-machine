@@ -1,7 +1,20 @@
 <div class="craneGame">
   <div class="crane">
     <div class="crane-arm">
-      <div class="crane-arm-claw"> </div>
+      <!-- <div class="crane-arm-claw"> </div> -->
+
+      <div class="claw" >
+        <div style="position:absolute;top:0;left:10px;width:40px;height:20px;background:#5b5b5b;border-radius:5px;"></div>
+        <div class="clawBar"></div>
+        <div class="clawALL crane-arm-claw">
+          <div class="clawBall"></div>
+          <div class="leftClaw"></div>
+          <div class="rightClaw"></div>
+        </div>
+      </div>
+
+      
+
     </div>
   </div>
 </div>
@@ -10,6 +23,8 @@
   <button class="left" (mousedown)="startEventLeft($event)" (mouseup)="stopEvent($event)">left</button>
   <button class="right" (mousedown)="startEventRight($event)" (mouseup)="stopEvent($event)">right</button>
   <button class="get" (click)="grab()">grab</button>
+  <button (click)="change()">!win</button>
+  {{win}}
 </div>
 
 <!-- {{number}} -->
