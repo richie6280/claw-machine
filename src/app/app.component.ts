@@ -66,9 +66,8 @@ export class AppComponent {
             if (!this.win) { this.dropPrize() } //未中獎掉禮物
             this.count = setInterval(() => {
               this.x--;
-              console.log(this.x)
               claw.style.transform = `translate3d(${this.x}px,${this.y}px, 0)`;
-
+              
               if (this.x < 0) {
                 clearInterval(this.count);
                 if (this.win) { this.dropPrize() }  //中獎掉禮物
@@ -111,7 +110,6 @@ export class AppComponent {
       let disappear = machine.offsetHeight - 25;
       if (this.y > disappear || prizeY > disappear) {
         prize.style.display = 'none';
-        clearInterval(this.count);
       }
     }, 3);
   }
