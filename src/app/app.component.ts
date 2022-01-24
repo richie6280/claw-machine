@@ -14,14 +14,16 @@ export class AppComponent {
   count: any;
   x: number = 0;
   y: number = 0
-  win: boolean = false;
+  win: boolean = true;
 
   startEventLeft(e: any): void {
     if (this.x < 0) return;
     const claw = document.querySelector('.claw') as HTMLElement;
+    const armClaw = document.querySelector('.crane-arm-claw') as HTMLElement;
     this.count = setInterval(() => {
-      this.x--;
+      this.x -= 0.5;
       claw.style.transform = `translateX(${this.x}px)`;
+      armClaw.style.animation = 'swingLeft .5s linear infinite alternate';
       if (this.x < 0) {
         clearInterval(this.count);
       };
@@ -31,10 +33,14 @@ export class AppComponent {
   startEventRight(e: any): void {
     const machine = document.querySelector('.craneGame') as HTMLElement;
     const claw = document.querySelector('.claw') as HTMLElement;
+    const armClaw = document.querySelector('.crane-arm-claw') as HTMLElement;
+
     if (this.x > machine.offsetWidth - 100) return;
+
     this.count = setInterval(() => {
-      this.x++;
+      this.x += 0.5;
       claw.style.transform = `translateX(${this.x}px)`;
+      armClaw.style.animation = 'swingRight .5s linear infinite alternate';
       if (this.x > (machine.offsetWidth - 100)) {
         clearInterval(this.count);
       };
@@ -42,12 +48,14 @@ export class AppComponent {
   }
 
   stopEvent(e: any): void {
+    const armClaw = document.querySelector('.crane-arm-claw') as HTMLElement;
     if (this.count) {
       clearInterval(this.count);
+      armClaw.style.animation = '';
     }
   }
 
-  grab() {
+  grab(): void {
     const machine = document.querySelector('.craneGame') as HTMLElement;
     const claw = document.querySelector('.claw') as HTMLElement;
     const clawBar = document.querySelector('.clawBar') as HTMLElement;
@@ -58,17 +66,17 @@ export class AppComponent {
     this.count = setInterval(() => {
       leftClaw.classList.add('clawGrab');
       rightClaw.classList.add('clawGrab');
-      this.y++;
+      this.y += 0.75;
       armClaw.style.transform = `translate3d(${0}px,${this.y}px, 0)`;
       clawBar.style.height = `${this.y + 15}px`;
 
-      if (this.y > (machine.offsetHeight - 100)) {
+      if (this.y > (machine.offsetHeight - 120)) {
         clearInterval(this.count);
         this.getPrize();
         this.count = setInterval(() => {
           leftClaw.classList.remove('clawGrab');
           rightClaw.classList.remove('clawGrab');
-          this.y--;
+          this.y -= 0.75;
           armClaw.style.transform = `translate3d(${0}px,${this.y}px, 0)`;
           clawBar.style.height = `${this.y + 15}px`;
 
@@ -76,7 +84,7 @@ export class AppComponent {
             clearInterval(this.count);
             if (!this.win) this.dropPrize() //未中獎掉禮物
             this.count = setInterval(() => {
-              this.x--;
+              this.x -= 0.5;
               claw.style.transform = `translate3d(${this.x}px,${this.y}px, 0)`;
 
               if (this.x < 0) {
@@ -100,7 +108,7 @@ export class AppComponent {
     }, 3);
   }
 
-  getPrize() {
+  getPrize(): void {
     const claw = document.querySelector('.crane-arm-claw') as HTMLElement;
     let prize = document.createElement("div");
     prize.setAttribute('class', 'prize');
@@ -110,11 +118,11 @@ export class AppComponent {
     prize.style.background = 'red';
     prize.style.borderRadius = '50%';
     prize.style.position = 'absolute';
-    prize.style.top = '72px';
+    prize.style.top = '35px';
     prize.style.left = '18px';
   }
 
-  dropPrize() {
+  dropPrize(): void {
     const machine = document.querySelector('.craneGame') as HTMLElement;
     const prize = document.querySelector('.prize') as HTMLElement;
 
