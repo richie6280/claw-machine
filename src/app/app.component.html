@@ -1,10 +1,10 @@
-<div class="craneGame">
+<!-- <div class="craneGame">
   <div class="crane">
     <div class="crane-arm">
-      <!-- <div class="crane-arm-claw"> </div> -->
 
-      <div class="claw" >
-        <div style="position:absolute;top:0;left:10px;width:40px;height:20px;background:#5b5b5b;border-radius:5px;"></div>
+      <div class="claw">
+        <div style="position:absolute;top:0;left:10px;width:40px;height:20px;background:#5b5b5b;border-radius:5px;">
+        </div>
         <div class="clawBar"></div>
         <div class="clawALL crane-arm-claw">
           <div class="clawBall"></div>
@@ -13,15 +13,30 @@
         </div>
       </div>
 
-      
-
     </div>
   </div>
+</div> -->
+
+<div class="container">
+  <img src="../assets/machine-frame.png" alt="" class="bg">
+  <div class="claw-all claw">
+    <div class="bar-claw"></div>
+    <div class="body-claw">
+      <img src="../assets/claw-body.png" alt="" class="arm-claw">
+      <img src="../assets/claw-left.png" alt="" class="left-claw">
+      <img src="../assets/claw-right.png" alt="" class="right-claw">
+    </div>
+  </div>
+
 </div>
 
 <div class="button">
-  <button class="left" (mousedown)="startEventLeft($event)" (mouseup)="stopEvent($event)">left</button>
-  <button class="right" (mousedown)="startEventRight($event)" (mouseup)="stopEvent($event)">right</button>
+  <button class="left" (mousedown)="startEventLeft($event)" (mouseup)="stopEvent($event)" (touchstart)="startEventLeft($event)" (touchend)="stopEvent($event)">
+    <img src="../assets/btn-left-arrow.png" alt="">
+  </button>
+  <button class="right" (mousedown)="startEventRight($event)" (mouseup)="stopEvent($event)" (touchstart)="startEventRight($event)" (touchend)="stopEvent($event)">
+    <img src="../assets/btn-right-arrow.png" alt="">
+  </button>
   <button class="get" (click)="grab()">grab</button>
   <button (click)="change()">!win</button>
   {{win}}

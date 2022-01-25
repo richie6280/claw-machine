@@ -16,23 +16,99 @@
     }
 }
 
-.craneGame {
-    height: 300px;
-    border: 1px solid #000;
+.container {
+    width: 100%;
+    overflow-x: hidden;
+    height: 160vw;
+
+    .bg {
+        width: 100%;
+        z-index: -1;
+        position: fixed;
+    }
+
+    .claw-all {
+        z-index: 2;
+        position: relative;
+        width: 80vw;
+        top: 40vw;
+        left: 15vw;
+
+        .body-claw {
+            transform-origin: top center;
+        }
+
+        .bar-claw {
+            width: 2vw;
+            height: 3vw;
+            background: #ccc;
+            position: absolute;
+            top: -3vw;
+            left: 3.9vw;
+        }
+
+        .arm-claw {
+            width: 10vw;
+            position: absolute;
+        }
+
+        .left-claw {
+            width: 10vw;
+            position: absolute;
+            top: 10vw;
+            left: -8vw;
+            transform-origin: top right;
+            transform: rotate(-30deg);
+        }
+
+        .right-claw {
+            width: 10vw;
+            position: absolute;
+            top: 10vw;
+            left: 8vw;
+            transform-origin: top left;
+            transform: rotate(30deg);
+        }
+
+        //爪子張開
+        .clawGrab {
+            transform: rotate(0deg);
+        }
+    }
 }
 
-.crane-arm {
-    width: 100%;
-    height: 0.75vh;
-    background: rgb(155, 155, 155);
-    margin-top: 1%;
+.left, .right {
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 5vw;
+        height: 5vw;
+    }
 }
-.crane-arm-claw {
-    // width: 50px;
-    // height: 50px;
-    // background: blue;
-    // position: relative;
-}
+
+// .craneGame {
+//     height: 300px;
+//     border: 1px solid #000;
+// }
+
+// .crane-arm {
+//     width: 100%;
+//     height: 0.75vh;
+//     background: rgb(155, 155, 155);
+//     margin-top: 1%;
+// }
+// .crane-arm-claw {
+//     // width: 50px;
+//     // height: 50px;
+//     // background: blue;
+//     // position: relative;
+// }
 
 .prize {
     height: 25px;
@@ -42,64 +118,59 @@
     z-index: 10;
 }
 
-.claw {
-    position: absolute;
-    top: 1.85%;
-    left: 30px;
-    width: 60px;
-    height: 260px;
-}
-.clawBar {
-    position: absolute;
-    top: 20px;
-    left: 27px;
-    width: 6px;
-    height: 15px;
-    background: #5b5b5b;
-    border-radius: 0 0 10px 10px;
-}
-.clawALL {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 60px;
-    transform-origin: top center;
-}
-.clawBall {
-    position: absolute;
-    top: 0px;
-    left: 21px;
-    width: 6px;
-    height: 6px;
-    border: 6px solid #5b5b5b;
-    border-radius: 50%;
-}
-.leftClaw {
-    position: absolute;
-    top: 5px;
-    left: 3px;
-    width: 16px;
-    height: 25px;
-    border-top: 8px solid #5b5b5b;
-    border-left: 4px solid #5b5b5b;
-    transform-origin: top right;
-    transform: rotate(-30deg);
-    transition: all .25s;
-}
-.rightClaw {
-    position: absolute;
-    top: 5px;
-    right: 3px;
-    width: 16px;
-    height: 25px;
-    border-top: 8px solid #5b5b5b;
-    border-right: 4px solid #5b5b5b;
-    transform-origin: top left;
-    transform: rotate(30deg);
-    transition: all .25s;
-}
-
-//爪子張開
-.clawGrab {
-    transform: rotate(0deg);
-}
+// .claw {
+//     position: absolute;
+//     top: 1.85%;
+//     left: 30px;
+//     width: 60px;
+//     height: 260px;
+// }
+// .clawBar {
+//     position: absolute;
+//     top: 20px;
+//     left: 27px;
+//     width: 6px;
+//     height: 15px;
+//     background: #5b5b5b;
+//     border-radius: 0 0 10px 10px;
+// }
+// .clawALL {
+//     position: absolute;
+//     top: 30px;
+//     left: 0;
+//     width: 60px;
+//     transform-origin: top center;
+// }
+// .clawBall {
+//     position: absolute;
+//     top: 0px;
+//     left: 21px;
+//     width: 6px;
+//     height: 6px;
+//     border: 6px solid #5b5b5b;
+//     border-radius: 50%;
+// }
+// .leftClaw {
+//     position: absolute;
+//     top: 5px;
+//     left: 3px;
+//     width: 16px;
+//     height: 25px;
+//     border-top: 8px solid #5b5b5b;
+//     border-left: 4px solid #5b5b5b;
+//     transform-origin: top right;
+//     transform: rotate(-30deg);
+//     transition: all 0.25s;
+// }
+// .rightClaw {
+//     position: absolute;
+//     top: 5px;
+//     right: 3px;
+//     width: 16px;
+//     height: 25px;
+//     border-top: 8px solid #5b5b5b;
+//     border-right: 4px solid #5b5b5b;
+//     transform-origin: top left;
+//     transform: rotate(30deg);
+//     transition: all 0.25s;
+// }
