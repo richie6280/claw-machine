@@ -17,7 +17,7 @@
   </div>
 </div> -->
 
-<div class="container">
+<div class="container" oncontextmenu="return false" onselectstart="return false">
   <img src="../assets/machine-frame.png" alt="" class="bg">
   <div class="claw-all claw">
     <div class="bar-claw"></div>
@@ -28,20 +28,25 @@
     </div>
   </div>
 
+  <img src="../assets/window-prizes-shadow.png" alt="" class="prizes">
+
+  <div class="button">
+    <button class="left" (mousedown)="startEventLeft($event)" (mouseup)="stopEvent($event)"
+      (touchstart)="startEventLeft($event)" (touchend)="stopEvent($event)">
+      <img src="../assets/btn-left-arrow.png" alt="">
+    </button>
+    <button class="right" (mousedown)="startEventRight($event)" (mouseup)="stopEvent($event)"
+      (touchstart)="startEventRight($event)" (touchend)="stopEvent($event)">
+      <img src="../assets/btn-right-arrow.png" alt="">
+    </button>
+    <button class="get" (click)="grab()">
+      <img src="../assets/btn-prize-text.png" alt="">
+    </button>
+  </div>
 </div>
 
-<div class="button">
-  <button class="left" (mousedown)="startEventLeft($event)" (mouseup)="stopEvent($event)" (touchstart)="startEventLeft($event)" (touchend)="stopEvent($event)">
-    <img src="../assets/btn-left-arrow.png" alt="">
-  </button>
-  <button class="right" (mousedown)="startEventRight($event)" (mouseup)="stopEvent($event)" (touchstart)="startEventRight($event)" (touchend)="stopEvent($event)">
-    <img src="../assets/btn-right-arrow.png" alt="">
-  </button>
-  <button class="get" (click)="grab()">grab</button>
-  <button (click)="change()">!win</button>
-  {{win}}
-</div>
-
+<button (click)="change()">!win</button>
+{{win}}
 <!-- {{number}} -->
 
 <!-- <button class="btn" (mousedown)="startEvent($event)" (mouseup)="stopEvent($event)">

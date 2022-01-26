@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +7,23 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  ngOninit() { }
+  ngOnInit() { }
 
   constructor() { }
 
   count: any;
   x: number = 0;
-  y: number = 0
+  y: number = 0;
   win: boolean = true;
 
   startEventLeft(e: any): void {
-    if (this.x < 0) return;
     const claw = document.querySelector('.claw') as HTMLElement;
     // const armClaw = document.querySelector('.crane-arm-claw') as HTMLElement;
+    const btn = document.querySelector('.left') as HTMLElement;
+
+    btn.classList.add('press');
+    if (this.x < 0) return;
+
     this.count = setInterval(() => {
       this.x -= 0.5;
       claw.style.transform = `translateX(${this.x}px)`;
@@ -33,8 +37,10 @@ export class AppComponent {
   startEventRight(e: any): void {
     const machine = document.querySelector('.container') as HTMLElement;
     const claw = document.querySelector('.claw') as HTMLElement;
+    const btn = document.querySelector('.right') as HTMLElement;
     // const armClaw = document.querySelector('.body-claw') as HTMLElement;
 
+    btn.classList.add('press');
     if (this.x > machine.offsetWidth - this.x) return;
 
     this.count = setInterval(() => {
@@ -49,9 +55,14 @@ export class AppComponent {
 
   stopEvent(e: any): void {
     // const armClaw = document.querySelector('.crane-arm-claw') as HTMLElement;
+    const rightBtn = document.querySelector('.right') as HTMLElement;
+    const leftBtn = document.querySelector('.left') as HTMLElement;
+    // const getBtn = document.querySelector('.get') as HTMLElement;
     if (this.count) {
       clearInterval(this.count);
       // armClaw.style.animation = '';
+      rightBtn.classList.remove('press');
+      leftBtn.classList.remove('press');
     }
   }
 
@@ -62,6 +73,12 @@ export class AppComponent {
     const armClaw = document.querySelector('.body-claw') as HTMLElement;
     const leftClaw = document.querySelector('.left-claw') as HTMLElement;
     const rightClaw = document.querySelector('.right-claw') as HTMLElement;
+    const getBtn = document.querySelector('.get') as HTMLElement;
+
+    getBtn.classList.add('press');
+    setTimeout(() => {
+      getBtn.classList.remove('press');
+    }, 100)
 
     this.count = setInterval(() => {
       leftClaw.classList.add('clawGrab');
@@ -70,7 +87,7 @@ export class AppComponent {
       armClaw.style.transform = `translate3d(${0}px,${this.y}px, 0)`;
       clawBar.style.height = `${this.y + 30}px`;
 
-      if (this.y > 120) { //暫時
+      if (this.y > (machine.offsetWidth / 4)) { //暫時
         clearInterval(this.count);
         this.getPrize();
         this.count = setInterval(() => {
@@ -113,17 +130,20 @@ export class AppComponent {
     let prize = document.createElement("div");
     prize.setAttribute('class', 'prize');
     claw.appendChild(prize);
-    prize.style.width = '25px';
-    prize.style.height = '25px';
-    prize.style.background = 'red';
-    prize.style.borderRadius = '50%';
-    prize.style.position = 'absolute';
-    prize.style.top = '60px';
-    prize.style.left = '10px';
+    prize.style.backgroundImage = "url('../assets/prize-get.png')";
+    prize.style.backgroundSize = '13vw';
+    prize.style.width = '13vw';
+    prize.style.height = '13vw';
+    prize.style.position = 'relative';
+    prize.style.top = '13vw';
+    prize.style.right = '1.5vw';
+    // prize.style.zIndex = '-2';
+    // prize.style.background = 'red';
+    // prize.style.borderRadius = '50%';
   }
 
   dropPrize(): void {
-    const machine = document.querySelector('.craneGame') as HTMLElement;
+    const machine = document.querySelector('.container') as HTMLElement;
     const prize = document.querySelector('.prize') as HTMLElement;
 
     let prizeX = this.x;
@@ -137,9 +157,12 @@ export class AppComponent {
         prize.style.transform = `translate3d(${this.x}px,${this.y}px, 0)`;
       }
 
-      if (this.y > 150 || prizeY > 150) {
-        prize.style.display = 'none';
-      }
+      if (this.y > (machine.offsetWidth / 4) || prizeY > (machine.offsetWidth / 4)) prize.style.display = 'none';
+      if (this.y > (machine.offsetWidth / 1.3)) {
+        prize.style.right = '4vw';
+        prize.style.display = 'block';
+        if (this.y > machine.offsetWidth * 0.845) this.y--; return;
+      };
     }, 3);
   }
 
@@ -148,7 +171,7 @@ export class AppComponent {
   }
 
   showPrize() {
-    
+
   }
 
 }

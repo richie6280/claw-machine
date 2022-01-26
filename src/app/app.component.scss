@@ -20,6 +20,10 @@
     width: 100%;
     overflow-x: hidden;
     height: 160vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .bg {
         width: 100%;
@@ -32,7 +36,7 @@
         position: relative;
         width: 80vw;
         top: 40vw;
-        left: 15vw;
+        left: 8vw;
 
         .body-claw {
             transform-origin: top center;
@@ -75,20 +79,71 @@
             transform: rotate(0deg);
         }
     }
+
+    .prizes {
+        width: 85.5vw;
+        position: absolute;
+        top: 36.5vw;
+        height: 63vw;
+        z-index: 2;
+    }
+
+    .prize-winning {
+        z-index: 5;
+    }
 }
 
-.left, .right {
-    width: 5vw;
-    height: 5vw;
-    border-radius: 50%;
-    border: none;
+.button {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    position: absolute;
+    bottom: 42.5vw;
 
-    img {
-        width: 5vw;
-        height: 5vw;
+    .left,
+    .right {
+        width: 15vw;
+        height: 15vw;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 2.5vw;
+        border-bottom: 4vw solid #3986e2;
+        background: #3986e2;
+        transition: all 0.25s;
+        box-shadow: 0 1vw 0 .25vw #fff;
+
+        img {
+            width: 15vw;
+            height: 15vw;
+            // border-bottom: 4vw solid #fff;
+        }
+    }
+
+    .get {
+        width: 33.45vw;
+        height: 15vw;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 2.5vw;
+        border-radius: 3vw;
+        border-bottom: 4vw solid #e53c3c;
+        background: #e53c3c;
+        transition: all .25s;
+        box-shadow: 0 1vw 0 .25vw #fff;
+
+        img {
+            width: 35vw;
+            height: 15vw;
+        }
+    }
+
+    .press {
+        border-bottom: none;
     }
 }
 
@@ -111,11 +166,13 @@
 // }
 
 .prize {
-    height: 25px;
-    width: 25px;
-    background: red;
+    // height: 25px;
+    // width: 25px;
+    // background: red;
     // position: absolute;
-    z-index: 10;
+    // z-index: 10;
+    width: 10vw;
+    height: 10vw;
 }
 
 // .claw {
