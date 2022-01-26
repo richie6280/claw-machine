@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.swingRight();
+  }
 
   constructor() { }
 
@@ -16,57 +18,80 @@ export class AppComponent {
   y: number = 0;
   win: boolean = true;
 
-  startEventLeft(e: any): void {
-    const claw = document.querySelector('.claw') as HTMLElement;
-    // const armClaw = document.querySelector('.crane-arm-claw') as HTMLElement;
-    const btn = document.querySelector('.left') as HTMLElement;
+  // startEventLeft(e: any): void {
+  //   const claw = document.querySelector('.claw') as HTMLElement;
+  //   const btn = document.querySelector('.left') as HTMLElement;
 
-    btn.classList.add('press');
+  //   btn.classList.add('preㄥss');
+  //   if (this.x < 0) return;
+
+  //   this.count = setInterval(() => {
+  //     this.x -= 0.5;
+  //     claw.style.transform = `translateX(${this.x}px)`;
+  //     if (this.x < 0) {
+  //       clearInterval(this.count);
+  //     };
+  //   }, 3);
+  // }
+
+  // startEventRight(e: any): void {
+  //   const machine = document.querySelector('.container') as HTMLElement;
+  //   const claw = document.querySelector('.claw') as HTMLElement;
+  //   const btn = document.querySelector('.right') as HTMLElement;
+
+  //   btn.classList.add('press');
+  //   if (this.x > machine.offsetWidth - this.x) return;
+
+  //   this.count = setInterval(() => {
+  //     this.x += 0.5;
+  //     claw.style.transform = `translateX(${this.x}px)`;
+  //     if (this.x > (machine.offsetWidth - this.x)) {
+  //       clearInterval(this.count);
+  //     };
+  //   }, 3);
+  // }
+
+  // stopEvent(e: any): void {
+  //   const rightBtn = document.querySelector('.right') as HTMLElement;
+  //   const leftBtn = document.querySelector('.left') as HTMLElement;
+  //   if (this.count) {
+  //     clearInterval(this.count);
+  //     rightBtn.classList.remove('press');
+  //     leftBtn.classList.remove('press');
+  //   }
+  // }
+
+  swingRight() {
+    const machine = document.querySelector('.container') as HTMLElement;
+    const claw = document.querySelector('.claw') as HTMLElement;
+
+    this.count = setInterval(() => {
+      this.x += 0.5;
+      claw.style.transform = `translateX(${this.x}px)`;
+      if (this.x > (machine.offsetWidth - this.x)) {
+        clearInterval(this.count);
+        this.swingLeft();
+      };
+    }, 3);
+  }
+
+  swingLeft() {
+    const claw = document.querySelector('.claw') as HTMLElement;
+
     if (this.x < 0) return;
 
     this.count = setInterval(() => {
       this.x -= 0.5;
       claw.style.transform = `translateX(${this.x}px)`;
-      // armClaw.style.animation = 'swingLeft .5s linear infinite alternate';
       if (this.x < 0) {
         clearInterval(this.count);
+        this.swingRight();
       };
     }, 3);
-  }
-
-  startEventRight(e: any): void {
-    const machine = document.querySelector('.container') as HTMLElement;
-    const claw = document.querySelector('.claw') as HTMLElement;
-    const btn = document.querySelector('.right') as HTMLElement;
-    // const armClaw = document.querySelector('.body-claw') as HTMLElement;
-
-    btn.classList.add('press');
-    if (this.x > machine.offsetWidth - this.x) return;
-
-    this.count = setInterval(() => {
-      this.x += 0.5;
-      claw.style.transform = `translateX(${this.x}px)`;
-      // armClaw.style.animation = 'swingRight .5s linear infinite alternate';
-      if (this.x > (machine.offsetWidth - this.x)) {
-        clearInterval(this.count);
-      };
-    }, 3);
-  }
-
-  stopEvent(e: any): void {
-    // const armClaw = document.querySelector('.crane-arm-claw') as HTMLElement;
-    const rightBtn = document.querySelector('.right') as HTMLElement;
-    const leftBtn = document.querySelector('.left') as HTMLElement;
-    // const getBtn = document.querySelector('.get') as HTMLElement;
-    if (this.count) {
-      clearInterval(this.count);
-      // armClaw.style.animation = '';
-      rightBtn.classList.remove('press');
-      leftBtn.classList.remove('press');
-    }
   }
 
   grab(): void {
+    clearInterval(this.count);
     const machine = document.querySelector('.container') as HTMLElement;
     const claw = document.querySelector('.claw') as HTMLElement;
     const clawBar = document.querySelector('.bar-claw') as HTMLElement;
@@ -107,10 +132,10 @@ export class AppComponent {
               if (this.x < 0) {
                 leftClaw.classList.add('clawGrab');
                 rightClaw.classList.add('clawGrab');
-                setTimeout(() => {
-                  leftClaw.classList.remove('clawGrab');
-                  rightClaw.classList.remove('clawGrab');
-                }, 250)
+                // setTimeout(() => {
+                //   leftClaw.classList.remove('clawGrab');
+                //   rightClaw.classList.remove('clawGrab');
+                // }, 250)
 
                 clearInterval(this.count);
                 if (this.win) this.dropPrize();  //中獎掉禮物
@@ -137,9 +162,6 @@ export class AppComponent {
     prize.style.position = 'relative';
     prize.style.top = '13vw';
     prize.style.right = '1.5vw';
-    // prize.style.zIndex = '-2';
-    // prize.style.background = 'red';
-    // prize.style.borderRadius = '50%';
   }
 
   dropPrize(): void {
@@ -168,10 +190,6 @@ export class AppComponent {
 
   change() {
     this.win = !this.win;
-  }
-
-  showPrize() {
-
   }
 
 }
