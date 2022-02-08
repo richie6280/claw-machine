@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
 
-  ngOnInit() { 
+  ngOnInit() {
     this.swingRight();
+    // this.customizationImages(); 
   }
 
   constructor() { }
@@ -60,6 +61,25 @@ export class AppComponent {
   //     leftBtn.classList.remove('press');
   //   }
   // }
+
+  customizationImages() {
+    const banner = document.querySelector('.banner') as HTMLElement;
+    const background = document.querySelector('.container') as HTMLElement;
+    const icon = document.querySelector('.icon') as HTMLElement;
+    banner.style.position = 'absolute';
+    banner.style.top = '7.3vw';
+    banner.style.width = '85.5vw';
+    banner.style.height = '24.6vw';
+    banner.style.background = '#000';
+    background.style.zIndex = '-5'
+    background.style.background = '#ccc'
+    icon.style.zIndex = '3';
+    icon.style.position = 'absolute';
+    icon.style.top = '36.5vw';  
+    icon.style.width = '80vw';
+    icon.style.height = '42vw';
+    icon.style.background = 'red';
+  }
 
   swingRight() {
     const machine = document.querySelector('.container') as HTMLElement;
