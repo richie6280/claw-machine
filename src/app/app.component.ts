@@ -137,7 +137,7 @@ export class AppComponent {
   }
 
   grab(): void {
-    this.onlyOnce();
+    // this.onlyOnce();
 
     clearInterval(this.count);
     const claw = document.querySelector('.claw') as HTMLElement;
@@ -149,6 +149,7 @@ export class AppComponent {
 
     getBtn.classList.add('press');
     getBtn.classList.remove('flash');
+    getBtn.setAttribute('disabled', 'disabled');
     setTimeout(() => {
       getBtn.classList.remove('press');
     }, 100)
