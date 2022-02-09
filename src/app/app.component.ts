@@ -148,6 +148,7 @@ export class AppComponent {
     const getBtn = document.querySelector('.get') as HTMLElement;
 
     getBtn.classList.add('press');
+    getBtn.classList.remove('flash');
     setTimeout(() => {
       getBtn.classList.remove('press');
     }, 100)

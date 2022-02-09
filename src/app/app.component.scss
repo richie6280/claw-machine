@@ -1,7 +1,6 @@
 @keyframes btn {
     0% { filter: brightness(1) }
-    50% { filter: brightness(1.2) }
-    100% { filter: brightness(1) }
+    50% { filter: brightness(1.15) }
 }
 
 .container {
@@ -127,12 +126,14 @@
         margin-left: 10vw;
         border-radius: 3vw;
         transition: all .25s;
-        animation: btn 1s linear infinite alternate;
-
         img {
             width: 53vw;
             height: 13vw;
         }
+    }
+
+    .flash {
+        animation: btn 1s steps(1) infinite;
     }
 
     .style-1 {
