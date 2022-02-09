@@ -1,8 +1,7 @@
 @keyframes btn {
-    0% { filter: contrast(1) }
-    33% { filter: contrast(1.5) }
-    66% { filter: contrast(2) }
-    100% { filter: contrast(1.5) }
+    0% { filter: brightness(1) }
+    50% { filter: brightness(1.2) }
+    100% { filter: brightness(1) }
 }
 
 .container {
