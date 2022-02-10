@@ -9,7 +9,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.swingRight();
-    this.customizationImages(); 
+    this.customizationImages();
   }
 
   constructor() { }
@@ -25,49 +25,6 @@ export class AppComponent {
   banner: string = '#fff';
   icon: string = '';
 
-  // startEventLeft(e: any): void {
-  //   const claw = document.querySelector('.claw') as HTMLElement;
-  //   const btn = document.querySelector('.left') as HTMLElement;
-
-  //   btn.classList.add('preㄥss');
-  //   if (this.x < 0) return;
-
-  //   this.count = setInterval(() => {
-  //     this.x -= 0.5;
-  //     claw.style.transform = `translateX(${this.x}px)`;
-  //     if (this.x < 0) {
-  //       clearInterval(this.count);
-  //     };
-  //   }, 3);
-  // }
-
-  // startEventRight(e: any): void {
-  //   const machine = document.querySelector('.container') as HTMLElement;
-  //   const claw = document.querySelector('.claw') as HTMLElement;
-  //   const btn = document.querySelector('.right') as HTMLElement;
-
-  //   btn.classList.add('press');
-  //   if (this.x > machine.offsetWidth - this.x) return;
-
-  //   this.count = setInterval(() => {
-  //     this.x += 0.5;
-  //     claw.style.transform = `translateX(${this.x}px)`;
-  //     if (this.x > (machine.offsetWidth - this.x)) {
-  //       clearInterval(this.count);
-  //     };
-  //   }, 3);
-  // }
-
-  // stopEvent(e: any): void {
-  //   const rightBtn = document.querySelector('.right') as HTMLElement;
-  //   const leftBtn = document.querySelector('.left') as HTMLElement;
-  //   if (this.count) {
-  //     clearInterval(this.count);
-  //     rightBtn.classList.remove('press');
-  //     leftBtn.classList.remove('press');
-  //   }
-  // }
-
   customizationImages() {
     //風格
     const banner = document.querySelector('.banner') as HTMLElement;
@@ -81,31 +38,41 @@ export class AppComponent {
     const background = document.querySelector('.background') as HTMLElement;
     const icon = document.querySelector('.icon') as HTMLElement;
 
-    if(this.style === '扭蛋') {
-      background.style.background = 'url(../assets/扭蛋/window-background.png)';
-      machine.setAttribute('src', '../assets/扭蛋/machine-frame.png');
-      prizes.setAttribute('src', '../assets/扭蛋/window-prizes-shadow.png');
-      joystick.setAttribute('src', '../assets/扭蛋/joystick.png');
-      getImg.setAttribute('src', '../assets/扭蛋/btn-prize-text.png');
-      get.classList.add('style-1');
-    } else if (this.style === '禮物') {
-      background.style.background = 'url(../assets/禮物/window-background.png)';
-      machine.setAttribute('src', '../assets/禮物/machine-frame.png');
-      prizes.setAttribute('src', '../assets/禮物/window-prizes-shadow.png');
-      joystick.setAttribute('src', '../assets/禮物/joystick.png');
-      getImg.setAttribute('src', '../assets/禮物/btn-prize-text.png');
-      get.classList.add('style-2');
-    } else if (this.style === '彩球') {
-      background.style.background = 'url(../assets/彩球/window-background.png)';
-      machine.setAttribute('src', '../assets/彩球/machine-frame.png');
-      prizes.setAttribute('src', '../assets/彩球/window-prizes-shadow.png');
-      joystick.setAttribute('src', '../assets/彩球/joystick.png');
-      getImg.setAttribute('src', '../assets/彩球/btn-prize-text.png');
-      get.classList.add('style-3');
+    switch (this.style) {
+      case '扭蛋':
+        background.style.background = 'url(../assets/扭蛋/window-background.png)';
+        background.style.backgroundSize = 'cover';
+        machine.setAttribute('src', '../assets/扭蛋/machine-frame.png');
+        prizes.setAttribute('src', '../assets/扭蛋/window-prizes-shadow.png');
+        joystick.setAttribute('src', '../assets/扭蛋/joystick.png');
+        getImg.setAttribute('src', '../assets/扭蛋/btn-prize-text.png');
+        get.classList.add('style-1');
+        break;
+
+      case '禮物':
+        background.style.background = 'url(../assets/禮物/window-background.png)';
+        background.style.backgroundSize = 'cover';
+        machine.setAttribute('src', '../assets/禮物/machine-frame.png');
+        prizes.setAttribute('src', '../assets/禮物/window-prizes-shadow.png');
+        joystick.setAttribute('src', '../assets/禮物/joystick.png');
+        getImg.setAttribute('src', '../assets/禮物/btn-prize-text.png');
+        get.classList.add('style-2');
+        break;
+
+      case '彩球':
+        background.style.background = 'url(../assets/彩球/window-background.png)';
+        background.style.backgroundSize = 'cover';
+        machine.setAttribute('src', '../assets/彩球/machine-frame.png');
+        prizes.setAttribute('src', '../assets/彩球/window-prizes-shadow.png');
+        joystick.setAttribute('src', '../assets/彩球/joystick.png');
+        getImg.setAttribute('src', '../assets/彩球/btn-prize-text.png');
+        get.classList.add('style-3');
+        break;
     }
-    
+
     banner.style.background = `${this.banner}`;
     icon.style.background = `${this.icon}`;
+    
   }
 
   swingRight() {
@@ -124,8 +91,6 @@ export class AppComponent {
   swingLeft() {
     const claw = document.querySelector('.claw') as HTMLElement;
 
-    if (this.x < 0) return;
-
     this.count = setInterval(() => {
       this.x -= 0.125;
       claw.style.transform = `translateX(${this.x}vw)`;
@@ -137,9 +102,8 @@ export class AppComponent {
   }
 
   grab(): void {
-    // this.onlyOnce();
-
     clearInterval(this.count);
+    
     const claw = document.querySelector('.claw') as HTMLElement;
     const clawBar = document.querySelector('.bar-claw') as HTMLElement;
     const armClaw = document.querySelector('.body-claw') as HTMLElement;
@@ -181,10 +145,6 @@ export class AppComponent {
               if (this.x < 0) {
                 leftClaw.classList.add('clawGrab');
                 rightClaw.classList.add('clawGrab');
-                // setTimeout(() => {
-                //   leftClaw.classList.remove('clawGrab');
-                //   rightClaw.classList.remove('clawGrab');
-                // }, 250)
 
                 clearInterval(this.count);
                 if (this.win) this.dropPrize();  //中獎掉禮物
@@ -204,13 +164,21 @@ export class AppComponent {
     let prize = document.createElement("div");
     prize.setAttribute('class', 'prize');
     claw.appendChild(prize);
-    if(this.style === '扭蛋') {
-      prize.style.backgroundImage = "url('../assets/扭蛋/prize-get.png')";
-    } else if (this.style === '禮物') {
-      prize.style.backgroundImage = "url('../assets/禮物/prize-get.png')";
-    } else if (this.style === '彩球') {
-      prize.style.backgroundImage = "url('../assets/彩球/prize-get.png')";
+
+    switch (this.style) {
+      case '扭蛋':
+        prize.style.backgroundImage = "url('../assets/扭蛋/prize-get.png')";
+        break;
+
+      case '禮物':
+        prize.style.backgroundImage = "url('../assets/禮物/prize-get.png')";
+        break;
+
+      case '彩球':
+        prize.style.backgroundImage = "url('../assets/彩球/prize-get.png')";
+        break;
     }
+
     prize.style.backgroundSize = '13vw';
     prize.style.width = '13vw';
     prize.style.height = '13vw';
@@ -226,10 +194,10 @@ export class AppComponent {
     let prizeY = this.y;
     this.count = setInterval(() => {
       if (!this.win) { //未中獎
-        prizeY+=0.2;
+        prizeY += 0.2;
         prize.style.transform = `translate3d(${prizeX - this.x}vw,${prizeY}vw, 0)`;
       } else {  //中獎
-        this.y+=0.2;
+        this.y += 0.2;
         prize.style.transform = `translate3d(${this.x}vw,${this.y}vw, 0)`;
       }
 
@@ -237,19 +205,9 @@ export class AppComponent {
       if (this.y > 75) {
         prize.style.right = '4.5vw';
         prize.style.display = 'block';
-        if (this.y > 84.5) this.y-=0.2; return;
+        if (this.y > 84.5) this.y -= 0.2; return;
       };
     }, 3);
-  }
-
-  onlyOnce() {
-    const machine = document.querySelector('.container') as HTMLElement;
-    const preventRepeat = document.createElement("div");
-    machine.append(preventRepeat);
-    preventRepeat.style.width = '100vw';
-    preventRepeat.style.height = '100vh';
-    preventRepeat.style.zIndex = '3';
-    preventRepeat.style.position = 'absolute';
   }
 
   change() {
